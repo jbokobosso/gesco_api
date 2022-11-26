@@ -6,7 +6,6 @@ const debug = require("debug")('dev');
 const app = express();
 const contactRouter = require('./routes/contact_routes');
 const mongoose = require("mongoose");
-const Fawn = require("fawn");
 const Joi = require('joi');
 Joi.objectId = require("joi-objectid")(Joi);
 const winston = require("winston")
