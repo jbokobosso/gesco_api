@@ -9,4 +9,6 @@ The app is served under [http://localhost:8080/api/v1](http://localhost:8080/api
 
 ## Dev instructions
 
+To execute the project in dev mode, run ``npm run dev`` after ``npm install``
+
 The docummentation of this api is hosted on [http://localhost:8080/api/v1/docs](http://localhost:8080/api/v1/docs)
