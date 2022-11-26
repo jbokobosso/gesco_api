@@ -13,34 +13,83 @@ paths:
       summary: Creates a contact
       description: Creation of ta contact to be stored on the database
       tags:
-        - Config
+        - Contact
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterBody'
+              $ref: '#/components/schemas/Contact'
       responses:
         200:
           description: Contact saved
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Contact'
         400:
           description: Duplicate key found or Missing some fields in request body
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ServerResponse'
         500:
           description: Internal error on API
           content:
             application/json:
               schema:
-                type: object
-
-  
+                $ref: '#/components/schemas/ServerResponse'
+    get:
+      summary: Get all the contacts list
+      description: Lists all the contacts in the MongoDB database
+      tags:
+        - Contact
+      responses:
+        200:
+          description: Response body
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+        500:
+          description: Internal error on API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerResponse'
+  /contact/{id}:
+    delete:
+      summary: Delete an entry based on it's id
+      description: Deletes a contact, provided you give the contact's MongoDB ObjectId
+      tags:
+        - Contact
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: MongoDb ObjectId of a contact
+      responses:
+        200:
+          description: Contact deletion feedback
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerResponse'
+        400:
+          description: Surely, id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerResponse'
+        500:
+          description: Internal error on API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerResponse'
+    
 
 components:
   securitySchemes:
@@ -64,6 +113,11 @@ components:
           type: string
           required: true
         email:
+          type: string
+          required: true  
+    ServerResponse:
+      properties:
+        message:
           type: string
           required: true
         

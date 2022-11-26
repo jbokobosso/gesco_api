@@ -13,7 +13,6 @@ const winston = require("winston")
 const cors = require('cors');
 const fs = require("fs")
 const yaml = require('js-yaml')
-const swaggerSetup = require("./middlewares/swagger")
 const swaggerUi = require("swagger-ui-express");
 
 try {
@@ -56,7 +55,6 @@ app.use(express.json());
 app.use(helmet());
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use('/api/v1/docs', swaggerUi.serve, swaggerSetup);
 
 app.use('/api/v1/contact', contactRouter);
 
