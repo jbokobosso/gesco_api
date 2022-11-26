@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  title: GESCO API
+  description: A contact management app.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Dev server
+paths:
+
+  /contact:
+    post:
+      summary: Creates a contact
+      description: Creation of ta contact to be stored on the database
+      tags:
+        - Config
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterBody'
+      responses:
+        200:
+          description: Contact saved
+          content:
+            application/json:
+              schema:
+                type: object
+        400:
+          description: Duplicate key found or Missing some fields in request body
+          content:
+            application/json:
+              schema:
+                type: object
+        500:
+          description: Internal error on API
+          content:
+            application/json:
+              schema:
+                type: object
+
+  
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Contact:
+      properties:
+        uid:
+          type: string
+          required: false
+        firstname:
+          type: string
+          required: true
+        lastname:
+          type: string
+          required: true
+        phone:
+          type: string
+          required: true
+        email:
+          type: string
+          required: true
+        

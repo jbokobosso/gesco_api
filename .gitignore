@@ -1,0 +1,11 @@
+node_modules/
+public/
+errors.log
+olux.zip
+.idea/
+.vscode/
+errors.log
+ajan_web_api.zip
+ajan.zip
+api.zip
+ajan_api.zip
